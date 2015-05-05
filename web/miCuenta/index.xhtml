@@ -1,0 +1,28 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/plantilla/public/plantilla.xhtml"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+
+
+    <ui:define name="titulo">Tienda Online - Página principal</ui:define>
+    <ui:define name="menu">
+        <ui:include src="/WEB-INF/plantilla/topmenu.xhtml" />
+    </ui:define>
+    <ui:define name="contenido">     
+        <div class="container" >
+            <h2>Mi Cuenta</h2>
+            ID: #{clienteCtrl.cliente.id}<br/>
+            Nombre: #{clienteCtrl.cliente.nombre}<br/>
+            DNI: #{clienteCtrl.cliente.dni}<br/>      
+            Correo: #{clienteCtrl.cliente.correo}<br/>
+            Clave: #{clienteCtrl.cliente.clave}<br/> 
+            <h:form>
+                <h:commandButton  class="btn btn-default" action="#{clienteCtrl.logout()}" value="Cerrar sesión" />
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

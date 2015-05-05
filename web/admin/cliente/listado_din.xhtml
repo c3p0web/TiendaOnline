@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/plantilla/admin/plantilla.xhtml">
+    
+    <ui:define name="titulo">Tienda Online - Listado Usuarios</ui:define>
+    
+    <ui:define name="menuizquierda">
+        <ui:include src="/WEB-INF/plantilla/admin/leftmenu.xhtml" />
+    </ui:define>
+    
+    <ui:define name="contenido">
+        <ui:debug />
+        <h2>Listado de Usuarios Editable </h2>
+        <h:messages class="warn"/>
+        <h:form>
+            <h:dataTable class="table table-responsive" var="cliente" value="#{clienteCtrl.clientes}" >
+                <h:column>
+                    <f:facet name="header">Usuario</f:facet>
+                #{cliente.nick}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                    <h:outputText value="#{cliente.nombre}" rendered="#{!clienteCtrl.isEditable(cliente.nick)}"/>
+                    <h:inputText value="#{cliente.nombre}" rendered="#{clienteCtrl.isEditable(cliente.nick)}"/>
+                </h:column>
+                <h:column class="">
+                    <f:facet name="header" >DNI</f:facet>
+                    <h:outputText value="#{cliente.dni}" rendered="#{!clienteCtrl.isEditable(cliente.nick)}"/>
+                    <h:inputText value="#{cliente.dni}" rendered="#{clienteCtrl.isEditable(cliente.nick)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Correo</f:facet>
+                    <h:outputText value="#{cliente.correo}" rendered="#{!clienteCtrl.isEditable(cliente.nick)}"/>
+                    <h:inputText value="#{cliente.correo}" rendered="#{clienteCtrl.isEditable(cliente.nick)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Clave</f:facet>
+                    <h:outputText value="#{cliente.clave}" rendered="#{!clienteCtrl.isEditable(cliente.nick)}"/>
+                    <h:inputText value="#{cliente.clave}" rendered="#{clienteCtrl.isEditable(cliente.nick)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Opciones</f:facet>
+                    <h:panelGroup rendered="#{!clienteCtrl.isEditable(cliente.nick)}">
+                        <h:link outcome="visualiza" class="danger"><i class="glyphicon glyphicon-eye-open"/>
+                            <f:param name="id" value="#{cliente.nick}" /></h:link>&#160;&#160;&#160;
+                        <h:commandLink action="#{clienteCtrl.setEditRow(cliente.nick)}"><i class="glyphicon glyphicon-edit"/></h:commandLink>&#160;&#160;&#160;
+                        <h:commandLink action="#{clienteCtrl.borra(cliente)}"><i class="glyphicon glyphicon-trash"/></h:commandLink>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{clienteCtrl.isEditable(cliente.nick)}">
+                        <h:commandLink action="#{clienteCtrl.guarda(cliente)}"><i class="glyphicon glyphicon-ok"/></h:commandLink>&#160;&#160;&#160;
+                        <h:commandLink action="#{clienteCtrl.setEditRow(null)}"><i class="glyphicon glyphicon-remove"/></h:commandLink>&#160;&#160;&#160;
+
+                    </h:panelGroup>
+                </h:column> 
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+    <ui:define name="left">
+        <h:link value='Nuevo Cliente' outcome="alta"/><br/>
+    </ui:define>
+
+    </ui:composition>

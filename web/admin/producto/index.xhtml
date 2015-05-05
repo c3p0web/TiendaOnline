@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/plantilla/admin/plantilla.xhtml">
+    
+    
+    <ui:define name="content">
+        <h1>Gestión de Productos</h1>
+        <br/><br/><br/><br/>
+    </ui:define>
+    <ui:define name="left">
+        <h:link value="Listado Editable" outcome="producto/listado_din" class="list-group-item"/>
+        <h:link value="Nuevo Producto" outcome="producto/alta" class="list-group-item"/>
+    </ui:define>
+    <ui:define name="contenido">
+        <ui:include src="/WEB-INF/plantilla/admin/menu.xhtml" />
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/plantilla/admin/plantilla.xhtml"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" >
+
+    <ui:define name="contenido">
+        <div class="container">
+            <h2>Registro</h2>
+            <h:form role="form" style="width: 30%">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <h:inputText  id="nombre" class="form-control" value="#{clienteCtrl.cliente.nombre}" required="true" pt:placeholder="Nombre" requiredMessage="Profavor introduzca su nombre"
+		validatorMessage="Nombre inválido">
+                        <f:validateLength minimum="4" maximum="25"/>
+                    </h:inputText>
+                    <h:message for="nombre" class="warn" /><br/>
+                </div>
+                <div class="form-group">
+                    <label for="email">DNI:</label>
+                    <h:inputText  id="dni" class="form-control" value="#{clienteCtrl.cliente.dni}" required="true" pt:placeholder="DNI" requiredMessage="Profavor introduzca su DNI"
+		validatorMessage="DNI inválido">
+                        <f:validateRegex pattern="\d{7,8}-?[a-zA-Z]"/>
+                    </h:inputText>
+                    <h:message for="dni" class="warn" /><br/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo:</label>
+                    <h:inputText  id="email" class="form-control" value="#{clienteCtrl.cliente.correo}" required="true" pt:placeholder="Correo" requiredMessage="Porfavor introduzca un correo."
+		validatorMessage="Email inválido">
+                      <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})" />
+                    </h:inputText>
+                    <h:message for="email" class="warn" /><br/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Contraseña:</label>
+                    <h:inputText  id="pwd" class="form-control" value="#{clienteCtrl.cliente.clave}" required="true" pt:placeholder="Contraseña" requiredMessage="Profavor introduzca una contraseña."
+		validatorMessage="Contraseña inválida">
+                        <f:validateRegex pattern="[a-zA-Z0-9\\\\s]{5,10}"/>
+                    </h:inputText>
+                    <h:message for="pwd" class="warn" /><br/>
+                </div>
+                <h:commandButton value="Guardar" class="btn btn-default" action="#{clienteCtrl.alta}"/>
+                <h:commandButton class="btn btn-default" value="Cancelar" action="/index" immediate="true" />
+            </h:form>
+        </div>
+    </ui:define>
+
+
+
+
+
+
+
+
+
+</ui:composition>

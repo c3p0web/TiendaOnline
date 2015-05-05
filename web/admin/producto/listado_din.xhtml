@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/plantilla/admin/plantilla.xhtml">
+    
+    <ui:define name="titulo">Tienda Online - Listado Productos</ui:define>
+    
+    <ui:define name="menuizquierda">
+        <ui:include src="/WEB-INF/plantilla/admin/leftmenu.xhtml" />
+    </ui:define>
+    
+    <ui:define name="contenido">
+        <ui:debug />
+        <h2>Listado de Productos Editable </h2>
+        <h:messages class="warn"/>
+        <h:form>
+            <h:dataTable class="table table-responsive" var="producto" value="#{productoCtrl.productos}" >
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                #{producto.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                    <h:outputText value="#{producto.nombre}" rendered="#{!productoCtrl.isEditable(producto.id)}"/>
+                    <h:inputText value="#{producto.nombre}" rendered="#{productoCtrl.isEditable(producto.id)}"/>
+                </h:column>
+                <h:column class="">
+                    <f:facet name="header" >Descripción</f:facet>
+                    <h:outputText value="#{producto.descripcion}" rendered="#{!productoCtrl.isEditable(producto.id)}"/>
+                    <h:inputText value="#{producto.descripcion}" rendered="#{productoCtrl.isEditable(producto.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Valoración</f:facet>
+                    <h:outputText value="#{producto.valoracion}" rendered="#{!productoCtrl.isEditable(producto.id)}"/>
+                    <h:inputText value="#{producto.valoracion}" rendered="#{productoCtrl.isEditable(producto.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Precio</f:facet>
+                    <h:outputText value="#{producto.precio}" rendered="#{!productoCtrl.isEditable(producto.id)}"/>
+                    <h:inputText value="#{producto.precio}" rendered="#{productoCtrl.isEditable(producto.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Imagen</f:facet>
+                    <h:outputText value="#{producto.imagen}" rendered="#{!productoCtrl.isEditable(producto.id)}"/>
+                    <h:inputText value="#{producto.imagen}" rendered="#{productoCtrl.isEditable(producto.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Opciones</f:facet>
+                    <h:panelGroup rendered="#{!productoCtrl.isEditable(producto.id)}">
+                        <h:link outcome="visualiza" class="danger"><i class="glyphicon glyphicon-eye-open"/>
+                            <f:param name="id" value="#{producto.id}" /></h:link>&#160;&#160;&#160;
+                        <h:commandLink action="#{productoCtrl.setEditRow(producto.id)}"><i class="glyphicon glyphicon-edit"/></h:commandLink>&#160;&#160;&#160;
+                        <h:commandLink action="#{productoCtrl.borra(producto)}"><i class="glyphicon glyphicon-trash"/></h:commandLink>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{productoCtrl.isEditable(producto.id)}">
+                        <h:commandLink action="#{productoCtrl.guarda(producto)}"><i class="glyphicon glyphicon-ok"/></h:commandLink>&#160;&#160;&#160;
+                        <h:commandLink action="#{productoCtrl.setEditRow(0)}" class="danger" immediate="true"><i class="glyphicon glyphicon-remove"/></h:commandLink>&#160;&#160;&#160;
+                    </h:panelGroup>
+                </h:column> 
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+    <ui:define name="left">
+        <h:link value='Nuevo Producto' outcome="alta"/><br/>
+    </ui:define>
+
+    </ui:composition>

@@ -1,0 +1,74 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+@font-face {
+  font-family: 'Glyphicons Halflings';
+
+  src: url("#{resource['fonts:glyphicons-halflings-regular.eot']}");
+  src: url("#{resource['fonts:glyphicons-halflings-regular.eot?#iefix']}") format('embedded-opentype'), 
+      url("#{resource['fonts:glyphicons-halflings-regular.woff2']}") format('woff2'), 
+      url("#{resource['fonts:glyphicons-halflings-regular.woff']}") format('woff'), 
+      url("#{resource['fonts:glyphicons-halflings-regular.ttf']}") format('truetype'), 
+      url("#{resource['fonts:glyphicons-halflings-regular.svg#glyphicons_halflingsregular']}") format('svg');
+}
+
+.login-form{
+  height: 1px;
+  margin: 9px 0;
+
+}
+
+.input-text-small{
+    width: 50px;
+}
