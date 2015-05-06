@@ -34,6 +34,9 @@
                     <li>
                         <h:link value="Administracion" outcome="/admin/index" />
                     </li>
+                    <li>
+                        <h:link value="Login" outcome="/login" />
+                    </li>
                 </ul>
                 
                 <ul class="nav navbar-nav navbar-right">
@@ -41,20 +44,18 @@
                         
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-user"/> Login </a>
                         <ul class="dropdown-menu" role="menu">
-              
-                            <h:form rendered="true" class="navbar-form navbar-center" >
+                            
+                            <form method="POST" action="j_security_check" class="navbar-form navbar-center">
                                 <h:panelGrid columns="1" cellpadding="5">
                                     <h:outputLabel value="Usuario" class="login-form" />
-                                    <h:inputText value="" required="true" requiredMessage="Introduzca un nick valido" id="username"/>
-                                    <h:message for="username" class="error_message"/>
+                                    <input type="text" required="true" name="j_username"/>
 
                                     <h:outputLabel value="Contraseña" class="login-form"/>
-                                    <h:inputText value="" required="true" requiredMessage="Introduzca una contraseña" id="pass"/>
-                                    <h:message for="pass" class="error_message"/><br/>
-
-                                    <h:commandButton value="Login" action="null" class=""/>
+                                    <input type="password" required="true" name="j_password"/>
+                                    <input type="submit" value="Login"/>
                                 </h:panelGrid>
-                            </h:form>
+                            </form>
+
                             <li><h:outputLink rendered="true" value="#">Registrate</h:outputLink></li>
                             <li><h:outputLink rendered="false" value="#">Mi Cuenta</h:outputLink></li>
                             <li><h:outputLink rendered="false" value="#">Ver Carrito</h:outputLink></li>

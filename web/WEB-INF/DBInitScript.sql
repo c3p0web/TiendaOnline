@@ -1,17 +1,17 @@
 --Delete previous tables
 DROP TABLE Productos;
 DROP TABLE Familias;
-DROP TABLE Usuarios;
+--DROP TABLE Usuarios;
 DROP TABLE Roles;
 DROP TABLE Clientes;
 
 create table Clientes
 (
-        NICK VARCHAR(20) NOT NULL PRIMARY KEY,
+        NICK VARCHAR(255) NOT NULL PRIMARY KEY,
 	DNI VARCHAR(10),
 	NOMBRE VARCHAR(50),
         CORREO VARCHAR(50),
-        CLAVE VARCHAR(25)
+        CLAVE VARCHAR(255)
         
 );
 

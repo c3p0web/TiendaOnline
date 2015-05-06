@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/plantilla/public/plantilla.xhtml"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="titulo">Tienda Online - Página principal</ui:define>
+    <ui:define name="menu">
+        <ui:include src="/WEB-INF/plantilla/topmenu.xhtml" />
+    </ui:define>
+    <ui:define name="contenido">     
+        <div class="container" >
+            <h2>Acceda a su cuentaAaa</h2>
+            <form method="POST" action="j_security_check" class="navbar-form navbar-center">
+                <h:panelGrid columns="1" cellpadding="5">
+                    <h:outputLabel value="Usuario" class="login-form" />
+                    <input type="text" required="true" name="j_username"/>
+
+                    <h:outputLabel value="Contraseña" class="login-form"/>
+                    <input type="password" required="true" name="j_password"/>
+                    <input type="submit" value="Login"/>
+                </h:panelGrid>
+            </form>
+        </div>
+    </ui:define>
+</ui:composition>
