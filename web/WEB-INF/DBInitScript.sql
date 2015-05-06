@@ -79,6 +79,6 @@ create table Roles
 	rol VARCHAR(50) not null
 );
 
-insert into Roles values ('admin','administrador');
-insert into Roles values ('maria','cliente');
-insert into Roles values ('carlos','cliente');
+insert into Roles values ('manu','administrador');
+insert into Roles values ('marial','cliente');
+insert into Roles values ('sonia92','cliente');

@@ -28,6 +28,7 @@
         <web-resource-collection>
             <web-resource-name>admin</web-resource-name>
             <description/>
+            <url-pattern>/admin/*</url-pattern>
             <url-pattern>/faces/admin/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
@@ -36,17 +37,13 @@
             <description/>
             <role-name>admin</role-name>
         </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
     <security-constraint>
         <display-name>ClienteConstraint</display-name>
         <web-resource-collection>
             <web-resource-name>cliente</web-resource-name>
             <description/>
-            <url-pattern>/faces/cliente/*</url-pattern>
+            <url-pattern>/cliente/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -55,17 +52,13 @@
             <role-name>cliente</role-name>
             <role-name>admin</role-name>
         </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>tienda-realm</realm-name>
         <form-login-config>
             <form-login-page>/faces/login.xhtml</form-login-page>
-            <form-error-page>/faces/loginerror.xhtml</form-error-page>
+            <form-error-page>/faces/loginerror.xhml</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
