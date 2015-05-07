@@ -28,12 +28,6 @@
                     <li>
                         <h:link value="Productos" outcome="/admin/producto/index" />
                     </li>
-                    <li>
-                        <h:link value="Mi perfil" outcome="/miCuenta/index" />
-                    </li>
-                    <li>
-                        <h:link rendered="${clienteCtrl.admin}" value="Administracion" outcome="/admin/index" />
-                    </li>
                 </ul>
                 
                 <ul class="nav navbar-nav navbar-right">
@@ -43,7 +37,7 @@
                         <ul class="dropdown-menu" role="menu">
 
                             <form method="POST" action="j_security_check" class="navbar-form navbar-center">
-                                <h:panelGrid rendered="${!clienteCtrl.loged}" columns="1" cellpadding="5">
+                                <h:panelGrid rendered="#{!clienteCtrl.loged}" columns="1" cellpadding="5">
                                     <h:outputLabel value="Usuario" class="login-form" />
                                     <input type="text" required="true" name="j_username"/>
 
@@ -53,11 +47,14 @@
                                 </h:panelGrid>
                             </form>
 
-                            <li><h:outputLink rendered="${!clienteCtrl.loged}" value="register.xhtml">Registrate</h:outputLink></li>
-                            <li><h:outputLink rendered="${clienteCtrl.loged}" value="miCuenta/index.xhtml">Mi Cuenta</h:outputLink></li>
-                            <li><h:outputLink rendered="false" value="#">Ver Carrito</h:outputLink></li>
+                            <li><h:link rendered="#{!clienteCtrl.loged}" value="Registrate" outcome="register"/></li>
+                            <li><h:link rendered="#{clienteCtrl.loged}" value="Mi cuenta" outcome="/cliente/index"/></li>
+                            <li><h:link rendered="#{clienteCtrl.admin}" value="Administracion" outcome="/admin/index" /></li>
+                            <h:form>
+                                <li><h:commandButton rendered="#{clienteCtrl.loged}" action="#{clienteCtrl.logout()}"/></li>
+                            </h:form>
                             
-                            <li><h:outputLink rendered="${clienteCtrl.loged}" value="#{request.logout()}">Salir</h:outputLink></li>
+                            
                         </ul>
                     </li>
                     <li>

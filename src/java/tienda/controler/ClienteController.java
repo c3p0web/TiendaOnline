@@ -6,6 +6,7 @@ import tienda.model.Cliente;
 import tienda.model.dao.ClienteDAO;
 import tienda.qualifiers.DAOJdbc;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -151,7 +152,7 @@ public class ClienteController implements Serializable {
         if (session != null) {
             session.invalidate(); //Cierre de sesion
         }
-        return "/index";// indicas a donde quieres direccionar después de cerrar sesión 
+        return "/index.xhtml";// indicas a donde quieres direccionar después de cerrar sesión 
     }
 
     /**

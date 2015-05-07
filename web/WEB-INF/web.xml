@@ -13,7 +13,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
         <url-pattern>*.jsf</url-pattern>
-        <url-pattern>*.faces</url-pattern>   
+        <url-pattern>*.faces</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -44,6 +44,7 @@
             <web-resource-name>cliente</web-resource-name>
             <description/>
             <url-pattern>/cliente/*</url-pattern>
+            <url-pattern>/faces/cliente/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -69,4 +70,4 @@
         <description>Cliente registrado en la tienda</description>
         <role-name>cliente</role-name>
     </security-role>
-    </web-app>
+</web-app>
