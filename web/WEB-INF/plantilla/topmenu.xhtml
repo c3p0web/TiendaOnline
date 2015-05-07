@@ -34,9 +34,6 @@
                     <li>
                         <h:link value="Administracion" outcome="/admin/index" />
                     </li>
-                    <li>
-                        <h:link value="Login" outcome="/login" />
-                    </li>
                 </ul>
                 
                 <ul class="nav navbar-nav navbar-right">
@@ -60,7 +57,7 @@
                             <li><h:outputLink rendered="false" value="#">Mi Cuenta</h:outputLink></li>
                             <li><h:outputLink rendered="false" value="#">Ver Carrito</h:outputLink></li>
                             
-                            <li><h:outputLink rendered="false" value="#">Salir</h:outputLink></li>
+                            <li><h:outputLink rendered="false"#{request.getSession(create)} value="#">Salir</h:outputLink></li>
                         </ul>
                     </li>
                     <li>

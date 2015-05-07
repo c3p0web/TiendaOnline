@@ -14,6 +14,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
 import org.primefaces.context.RequestContext;
 
 @Named(value = "clienteCtrl")
@@ -204,4 +205,10 @@ public class ClienteController implements Serializable {
 //        
 //        }        
 //    }
+    
+public String getSesion(HttpSessionEvent se) {
+HttpSession session = se.getSession();
+return session.getId();
+// codes here...
+} 
 }

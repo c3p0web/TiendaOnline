@@ -13,7 +13,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
         <url-pattern>*.jsf</url-pattern>
-        <url-pattern>*.faces</url-pattern>
+        <url-pattern>*.faces</url-pattern>   
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -21,7 +21,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
     <security-constraint>
         <display-name>AdminConstraint</display-name>
@@ -69,4 +69,4 @@
         <description>Cliente registrado en la tienda</description>
         <role-name>cliente</role-name>
     </security-role>
-</web-app>
+    </web-app>
