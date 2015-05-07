@@ -129,7 +129,21 @@ public class ClienteController implements Serializable {
         }
         return false;
     }
-
+    
+    public boolean isUser(){
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        if (session != null) {
+            ExternalContext externalContext = facesContext.getExternalContext();
+            if (externalContext.isUserInRole("cliente")) {
+                return true;
+            }
+        }
+        return false; 
+    }
+    public boolean isLoged(){
+        return (isUser() || isAdmin());
+    }
     
     public String logout() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
