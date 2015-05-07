@@ -1,6 +1,7 @@
 package tienda.controler;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import tienda.model.Cliente;
 import tienda.model.dao.ClienteDAO;
 import tienda.qualifiers.DAOJdbc;
@@ -9,12 +10,15 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.Part;
 import org.primefaces.context.RequestContext;
 
 @Named(value = "clienteCtrl")
@@ -24,7 +28,8 @@ public class ClienteController implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //Business logic
-    @Inject @DAOJdbc
+    @Inject
+    @DAOJdbc
     private ClienteDAO clienteDAO;
 
     //Model
@@ -80,6 +85,23 @@ public class ClienteController implements Serializable {
         }
     }
 
+    public void identifica() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        if (session != null) {
+            System.err.println("===HAY SESION===");
+            ExternalContext externalContext = facesContext.getExternalContext();
+            if (externalContext.getUserPrincipal() == null) {
+                System.err.println("===NO ESTA AUTENTIFICADO===");
+            } else {
+                System.err.println("===ESTA AUTENTIFICADO===");
+                String nick = externalContext.getUserPrincipal().getName();
+                System.err.println("===HOLA SOY " + nick + "===");
+                c = clienteDAO.buscaId(nick);
+            }
+        }
+    }
+
     /**
      *
      * @param nombre
@@ -95,16 +117,19 @@ public class ClienteController implements Serializable {
         }
         return "index";
     }
-
-    /**
-     *
-     * @return
-     */
-    public String logout2() {
-       
-        return "/index";
-
+    
+    public boolean isAdmin(){
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        if (session != null) {
+            ExternalContext externalContext = facesContext.getExternalContext();
+            if (externalContext.isUserInRole("admin")) {
+                return true;
+            }
+        }
+        return false;
     }
+
     
     public String logout() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -185,6 +210,25 @@ public class ClienteController implements Serializable {
         lc = null;
     }
 
+    public void subirImagen(Part file) throws IOException {
+        String img = file.getName();
+        FileUpload fichero = new FileUpload();
+        if (fichero.upload(file)) {
+            c.setImagen(fichero.getNombre());
+            clienteDAO.guarda(c);
+        } else {
+           // FacesMessage message = new FacesMessage("Tipo de imagen inválido");
+            //throw new ValidatorException(message);
+        }
+    }
+
+//        public void validaImg(FacesContext context, UIComponent inputDni,Object value) {
+//        String img=(String)value;
+//        if (!img.matches("\"/(\\.|\\/)(gif|jpe?g|png)$/\"")) {
+//            FacesMessage message = new FacesMessage("Tipo de imagen inválido");
+//            throw new ValidatorException(message);               
+//        }        
+//    }
     //VALIDADORES Faces. Using Bean Validation instead
 //    public void validaNombre(FacesContext context, UIComponent inputNombre,
 //                                Object value) {
@@ -205,10 +249,4 @@ public class ClienteController implements Serializable {
 //        
 //        }        
 //    }
-    
-public String getSesion(HttpSessionEvent se) {
-HttpSession session = se.getSession();
-return session.getId();
-// codes here...
-} 
 }

@@ -29,10 +29,10 @@
                         <h:link value="Productos" outcome="/admin/producto/index" />
                     </li>
                     <li>
-                        <h:link value="Mi cuenta" outcome="/miCuenta/index" />
+                        <h:link value="Mi perfil" outcome="/miCuenta/index" />
                     </li>
                     <li>
-                        <h:link value="Administracion" outcome="/admin/index" />
+                        <h:link rendered="${clienteCtrl.admin}" value="Administracion" outcome="/admin/index" />
                     </li>
                 </ul>
                 
@@ -57,7 +57,7 @@
                             <li><h:outputLink rendered="false" value="#">Mi Cuenta</h:outputLink></li>
                             <li><h:outputLink rendered="false" value="#">Ver Carrito</h:outputLink></li>
                             
-                            <li><h:outputLink rendered="false"#{request.getSession(create)} value="#">Salir</h:outputLink></li>
+                            <li><h:outputLink rendered="false" value="#{clienteCtrl.logout}">Salir</h:outputLink></li>
                         </ul>
                     </li>
                     <li>

@@ -29,8 +29,8 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
     //private static String connPoolName="jdbc/gestClub";               //Glassfish
     private static final String SQL_BUSCAID="SELECT * FROM Clientes where nick=?";
     private static final String SQL_BUSCATODOS="SELECT * FROM Clientes";
-    private static final String SQL_CREA="INSERT INTO Clientes (nick,nombre,dni,correo,clave) VALUES (?,?,?,?,?)";
-    private static final String SQL_ACTUALIZA="UPDATE Clientes set NOMBRE=?, DNI=?,CORREO=?, CLAVE=? WHERE nick=?";
+    private static final String SQL_CREA="INSERT INTO Clientes (nick,nombre,dni,correo,clave,imagen) VALUES (?,?,?,?,?,?)";
+    private static final String SQL_ACTUALIZA="UPDATE Clientes set NOMBRE=?, DNI=?,CORREO=?, CLAVE=?, IMAGEN=? WHERE nick=?";
     private static final String SQL_BORRA="DELETE FROM Clientes WHERE nick=?";
     private static final String SQL_LOGIN = "SELECT * FROM Clientes WHERE (nombre=? AND clave=?)";
 
@@ -55,7 +55,8 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
                         rs.getString("NOMBRE"),
                         rs.getString("DNI"),
                         rs.getString("CORREO"),
-                        rs.getString("CLAVE")
+                        rs.getString("CLAVE"),
+                        rs.getString("IMAGEN")
         );
         return c;
     }  
@@ -106,6 +107,7 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
             stmn.setString(3,c.getDni());
             stmn.setString(4,c.getCorreo());
             stmn.setString(5,c.getClave());
+            stmn.setString(6,c.getImagen());
             stmn.executeUpdate();
             /*
             
@@ -139,7 +141,8 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
             stmn.setString(2,c.getDni());
             stmn.setString(3,c.getCorreo());
             stmn.setString(4,c.getClave());
-            stmn.setString(5,c.getNick());
+            stmn.setString(5,c.getImagen());
+            stmn.setString(6,c.getNick());
             result=(stmn.executeUpdate()==1);
         } catch (Exception ex) {
             Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
