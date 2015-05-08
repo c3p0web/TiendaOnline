@@ -5,6 +5,8 @@
  */
 package tienda.model;
 
+import java.sql.Date;
+
 /**
  *
  * @author c3p0
@@ -15,6 +17,8 @@ public class Producto {
     private String descripcion;
     private int valoracion;
     private float precio;
+    private Date fechaalta;
+    private int familia;
     private String imagen;
 
 

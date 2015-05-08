@@ -8,4 +8,5 @@ import tienda.model.Cliente;
  */
 public interface ClienteDAO extends GenericDAO<Cliente,String> {
     public Cliente logIn(String nombre, String clave);
+    public boolean creaAdmin(Cliente c);
 }

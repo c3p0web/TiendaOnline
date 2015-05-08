@@ -110,18 +110,5 @@ public class Cliente {
         this.imagen = imagen;
     }
 
-    /**
-     * @return the file
-     */
-    public Part getFile() {
-        return file;
-    }
-
-    /**
-     * @param file the file to set
-     */
-    public void setFile(Part file) {
-        this.file = file;
-    }
 
 }

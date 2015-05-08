@@ -155,18 +155,16 @@ public class ClienteController implements Serializable {
         return "/index.xhtml";// indicas a donde quieres direccionar después de cerrar sesión 
     }
 
-    /**
-     * Create a new Client from model data
-     */
-    public String crea() {
-        c.setNick("");
-        clienteDAO.crea(c);
+    //alta de admins
+    public String creaAdmin() {
+        //c.setNick("");
+        clienteDAO.creaAdmin(c);
         //Post-Redirect-Get
         return "visualiza?faces-redirect=true&id=" + c.getNick();
     }
-
+    //alta de usuarios
     public String alta() {
-        c.setNick("");
+        //c.setNick("");
         clienteDAO.crea(c);
         //Post-Redirect-Get
         return "/index";
@@ -224,11 +222,10 @@ public class ClienteController implements Serializable {
         editRow = "";
         lc = null;
     }
-
     public void subirImagen(Part file) throws IOException {
         String img = file.getName();
         FileUpload fichero = new FileUpload();
-        if (fichero.upload(file)) {
+        if (fichero.upload(file.getName())) {
             c.setImagen(fichero.getNombre());
             clienteDAO.guarda(c);
         } else {

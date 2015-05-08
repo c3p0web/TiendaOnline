@@ -2,13 +2,27 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/plantilla/admin/plantilla.xhtml"
+                template="/WEB-INF/plantilla/public/plantilla.xhtml"
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" >
+    
+    
+    <ui:define name="titulo">Tienda Online - Registro</ui:define>
+    <ui:define name="menu">
+        <ui:include src="/WEB-INF/plantilla/topmenu.xhtml" />
+    </ui:define>
 
     <ui:define name="contenido">
         <div class="container">
             <h2>Registro</h2>
             <h:form role="form" style="width: 30%">
+                <div class="form-group">
+                    <label for="nick">Nick</label>
+                    <h:inputText  id="nick" class="form-control" value="#{clienteCtrl.cliente.nick}" required="true" pt:placeholder="Nick" requiredMessage="Profavor introduzca su nick"
+		validatorMessage="Nick inválido">
+                        <f:validateLength minimum="4" maximum="25"/>
+                    </h:inputText>
+                    <h:message for="nick" class="warn" /><br/>
+                </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <h:inputText  id="nombre" class="form-control" value="#{clienteCtrl.cliente.nombre}" required="true" pt:placeholder="Nombre" requiredMessage="Profavor introduzca su nombre"
@@ -29,16 +43,16 @@
                     <label for="email">Correo:</label>
                     <h:inputText  id="email" class="form-control" value="#{clienteCtrl.cliente.correo}" required="true" pt:placeholder="Correo" requiredMessage="Porfavor introduzca un correo."
 		validatorMessage="Email inválido">
-                      <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})" />
+                      
                     </h:inputText>
                     <h:message for="email" class="warn" /><br/>
                 </div>
                 <div class="form-group">
                     <label for="email">Contraseña:</label>
-                    <h:inputText  id="pwd" class="form-control" value="#{clienteCtrl.cliente.clave}" required="true" pt:placeholder="Contraseña" requiredMessage="Profavor introduzca una contraseña."
+                    <h:inputSecret  id="pwd" class="form-control" value="#{clienteCtrl.cliente.clave}" required="true" pt:placeholder="Contraseña" requiredMessage="Profavor introduzca una contraseña."
 		validatorMessage="Contraseña inválida">
-                        <f:validateRegex pattern="[a-zA-Z0-9\\\\s]{5,10}"/>
-                    </h:inputText>
+                        <f:validateRegex pattern="[a-zA-Z0-9\\\\s]{4,10}"/>
+                    </h:inputSecret>
                     <h:message for="pwd" class="warn" /><br/>
                 </div>
                 <h:commandButton value="Guardar" class="btn btn-default" action="#{clienteCtrl.alta}"/>

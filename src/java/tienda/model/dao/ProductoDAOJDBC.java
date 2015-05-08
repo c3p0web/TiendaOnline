@@ -42,6 +42,8 @@ public class ProductoDAOJDBC implements ProductoDAO, Serializable{
     private static final String SQL_CREA="INSERT INTO Productos (nombre,descripcion,valoracion,precio,imagen) VALUES (?,?,?,?,?,?)";
     private static final String SQL_ACTUALIZA="UPDATE Productos set NOMBRE=?, DESCRIPCION=?, VALORACION=?, PRECIO=?, IMAGEN=? WHERE id=?";
     private static final String SQL_BORRA="DELETE FROM Productos WHERE id=?";
+    private static final String SQL_MAYORPRECIO="select * from PRODUCTOS ORDER BY precio DESC OFFSET 0 ROWS FETCH NEXT 6 ROWS ONLY";
+
 
      @Resource(lookup = "jdbc/tiendaOnline")
      private DataSource ds;
@@ -82,6 +84,7 @@ public class ProductoDAOJDBC implements ProductoDAO, Serializable{
         List<Producto> l=new ArrayList<>();
         try (Connection conn=ds.getConnection();
             Statement stmn=conn.createStatement();
+
             ResultSet rs=stmn.executeQuery(SQL_BUSCATODOS);
         ){
             while (rs.next()) {
@@ -92,7 +95,22 @@ public class ProductoDAOJDBC implements ProductoDAO, Serializable{
         }
         return l;
     }
-
+    
+    @Override
+    public List<Producto> buscaMayorPrecio() {
+        List<Producto> l=new ArrayList<>();
+        try (Connection conn=ds.getConnection();
+            Statement stmn=conn.createStatement();
+            ResultSet rs=stmn.executeQuery(SQL_MAYORPRECIO);
+        ){
+            while (rs.next()) {
+                l.add(clienteMapper(rs));
+            }                
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return l;
+    }
     @Override
     public boolean crea(Producto c) {
         boolean result=false;

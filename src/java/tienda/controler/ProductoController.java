@@ -1,16 +1,19 @@
 package tienda.controler;
 
+import java.io.IOException;
 import tienda.model.Producto;
 import tienda.model.dao.ProductoDAO;
 import tienda.qualifiers.DAOJdbc;
 import tienda.qualifiers.DAOList;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Lob;
+import javax.servlet.http.Part;
 
 
 @Named(value="productoCtrl")
@@ -113,6 +116,39 @@ public class ProductoController implements Serializable {
         productoDAO.guarda(producto);
         editRow=0;
         lc=null;
-    }        
+    }
+    public void subirImagen(Part file) throws IOException {
+        String img = file.getName();
+        FileUpload fichero = new FileUpload();
+        if (fichero.upload(file.getName())) {
+            c.setImagen(fichero.getNombre());
+            productoDAO.guarda(c);
+        } else {
+           // FacesMessage message = new FacesMessage("Tipo de imagen inválido");
+            //throw new ValidatorException(message);
+        }
+    }
+    
+    public List<Producto> productoMayorPrecio() {
+        if (lc == null) {
+            lc = productoDAO.buscaMayorPrecio();
+        }
+        System.out.println("TAMAÑO DE LA LISTA " + lc.size());
+        return lc;
+    }
+    
+    public List<Boolean> getStars(Integer val) { 
+        List<Boolean> l = new ArrayList<>(5);
+        System.out.println("---valoracion: "+val);                     
+        for (int i = 0; i < 5; i++) {
+            if (val > i) {
+                l.add(Boolean.TRUE);
+            }else
+            l.add(Boolean.FALSE);
+        }
+        System.out.println("======================");
+        System.out.println(l.toString());
+        return l;
+    }
     
 }

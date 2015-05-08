@@ -33,7 +33,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown ">
                         
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-user"/> Login </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="glyphicon glyphicon-user"/>
+                            <h:outputText rendered="#{!clienteCtrl.loged}" value=" Login"/>
+                            <h:outputText rendered="#{clienteCtrl.loged}" value=" Bienvenido"/>
+                        </a>
                         <ul class="dropdown-menu" role="menu">
 
                             <form method="POST" action="j_security_check" class="navbar-form navbar-center">
@@ -43,17 +47,21 @@
 
                                     <h:outputLabel value="Contraseña" class="login-form"/>
                                     <input type="password" required="true" name="j_password"/>
-                                    <input type="submit" value="Login"/>
+                                    <div class="navbar-form text-center">
+                                     <input type="submit" value="Login" class=""/>
+                                    </div>
                                 </h:panelGrid>
                             </form>
-
+                            <div class="navbar-form text-center">
                             <li><h:link rendered="#{!clienteCtrl.loged}" value="Registrate" outcome="register"/></li>
                             <li><h:link rendered="#{clienteCtrl.loged}" value="Mi cuenta" outcome="/cliente/index"/></li>
                             <li><h:link rendered="#{clienteCtrl.admin}" value="Administracion" outcome="/admin/index" /></li>
-                            <h:form>
-                                <li><h:commandButton rendered="#{clienteCtrl.loged}" action="#{clienteCtrl.logout()}"/></li>
-                            </h:form>
                             
+                            <h:form class="navbar-form navbar-center">
+                                <li><h:commandLink rendered="#{clienteCtrl.loged}" value="Salir" action="#{clienteCtrl.logout()}" /></li>
+                                
+                            </h:form>
+                            </div>
                             
                         </ul>
                     </li>
