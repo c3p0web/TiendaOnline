@@ -24,13 +24,13 @@
 
         <div class="col-sm-4 col-lg-4 col-md-4">    
             <div class="thumbnail">
-                <h:link outcome="visualizaProducto" class="danger">
+                <h:link outcome="visualizaProducto">
                     <h:graphicImage library="images" name="#{producto.imagen}" alt="#{producto.nombre}" height="150" width="320"/>
                     <f:param name="id" value="#{producto.id}" /></h:link>
 
                 <div class="caption">
                     <h4 class="pull-right">#{producto.precio} €</h4>
-                    <h4><a href="#">#{producto.nombre}</a>
+                    <h4>#{producto.nombre}
                     </h4>
                     <p>#{producto.descripcion}</p>
                 </div>

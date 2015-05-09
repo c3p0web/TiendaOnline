@@ -34,13 +34,31 @@
                         Nombre: <br/><h:inputText id="idNombre" value="#{productoCtrl.producto.nombre}" required="true" />
                     </div>
                     <div class="form-group">
-                        Descripcion:<br/><h:inputText id="idDescripcion" value="#{productoCtrl.producto.descripcion}" required="true" />                                       
+                        Descripcion:<br/><h:inputTextarea id="idDescripcion" value="#{productoCtrl.producto.descripcion}" cols="50" rows="5" required="true" >
+                            <f:validateLength maximum="400"/>
+                        </h:inputTextarea>                                       
                     </div>
                     <div class="form-group">
-                        Valoracion:<br/> <h:inputText  id="idValoracion" value="#{productoCtrl.producto.valoracion}"  required="true" />
+                        Valoracion:<br/>
+                        <h:selectOneMenu value="#{producto.valoracion}" rendered="#{productoCtrl.isEditable(producto.id)}" required="true">
+                            <f:selectItem itemValue="0" itemLabel="0"/>
+                            <f:selectItem itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="3" itemLabel="3"/>
+                            <f:selectItem itemValue="4" itemLabel="4"/>
+                            <f:selectItem itemValue="5" itemLabel="5"/>
+                        </h:selectOneMenu>
                     </div>
                     <div class="form-group">
-                    Precio: <br/> <h:inputText id="idPrecio" value="#{productoCtrl.producto.precio}" required="true" />
+                        Familia<br/>                     
+                        <h:selectOneMenu value="#{producto.familia}" rendered="#{productoCtrl.isEditable(producto.id)}" required="true">
+                            <f:selectItem itemValue="1" itemLabel="Familia 1"/>
+                            <f:selectItem itemValue="2" itemLabel="Familia 2"/>
+                            <f:selectItem itemValue="3" itemLabel="Familia 3"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group">
+                        Precio: <br/> <h:inputText id="idPrecio" value="#{productoCtrl.producto.precio}" required="true" />
                     </div>
                 </div>
             </div>

@@ -31,14 +31,14 @@
                             <h:graphicImage library="images" name="#{productoCtrl.producto.imagen}" /><br/> 
                         </div>
                         <div class="col-md-7">
-                            
-                            Descripcion: <br/>#{productoCtrl.producto.descripcion}<br/>
+                            <h4>Descripción: </h4><br/>
+                            <h:outputText value="#{productoCtrl.producto.descripcion} "/><br/>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="ratings text-center">
-                                        <ui:repeat value="#{productoCtrl.getStars(productoCtrl.producto.id)}" var="positiva">
+                                    <div class="ratings text-center"><br/>
+                                        <ui:repeat value="#{productoCtrl.getStars(productoCtrl.producto.valoracion)}" var="positiva">
                                             <h:outputLabel class="glyphicon glyphicon-star visualiza-star" rendered="#{positiva}"/>
-                                            <h:outputLabel class="glyphicon glyphicon-star-empty" rendered="#{!positiva}"/>
+                                            <h:outputLabel class="glyphicon glyphicon-star-empty visualiza-star" rendered="#{!positiva}"/>
                                         </ui:repeat>
                                     </div>
                                 </div>

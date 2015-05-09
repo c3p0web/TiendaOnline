@@ -28,33 +28,33 @@
                 <br/>
                 <h:form id="formCliente" >
                     <h:outputText value="Nick: "/>
-                    <h:outputText value="#{clienteCtrl.cliente.nick}" /><br/><h:inputHidden value="#{clienteCtrl.cliente.nick}"/>
+                    <h:outputText value="#{clienteCtrl.cliente.nick}" /><br/><h:inputHidden value="#{clienteCtrl.cliente.nick}"/><br/>
                     
                     <h:outputText value="Nombre: "/>
                     <p:inplace id="nombre" editor="true">
                     <h:inputText label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
                                          required="true" />
                     </p:inplace>
-                    <h:message for="idNombre" class="warn"/><br/>
-
+                    <h:message for="idNombre" class="warn"/><br/><br/>
+                    
                     <h:outputText value="DNI: "/>
                     <p:inplace id="dni" editor="true">
                     <h:inputText label="" id="idDNI" value="#{clienteCtrl.cliente.dni}"
                                       required="true" />
                     </p:inplace><br/>
-                    <h:message for="idDNI" class="warn"/>
+                    <h:message for="idDNI" class="warn"/><br/>
 
                     <h:outputText value="Correo: "/>
                     <p:inplace id="correo" editor="true">
                     <h:inputText label="" id="idCorreo" value="#{clienteCtrl.cliente.correo}"
-                                         required="true" /><br/>
+                                         required="true" />
                     <h:message for="idCorreo" class="warn"/>
-                    </p:inplace><br/>
+                    </p:inplace><br/><br/>
                         
                     <p:password placeholder="Cambiar clave" value="#{clienteCtrl.cliente.clave}"/>
 
 
-                    <h:message for="idClave" class="warn"/><br/>
+                    <h:message for="idClave" class="warn"/><br/><br/>
                     <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}"/>
                     
                 </h:form>
