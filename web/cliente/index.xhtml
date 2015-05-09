@@ -17,27 +17,15 @@
             <f:viewAction action="#{clienteCtrl.identifica()}"/>
         </f:metadata>
         <h2>Perfil de #{clienteCtrl.cliente.nombre}</h2>
+        <h:link value="Volver" outcome="/index" />
         <div class="list-group">
             <div class="list-group-item">
                 <h:form enctype="multipart/form-data">
                     <h:graphicImage library="images" name="#{clienteCtrl.cliente.imagen}" height="150" />
-                    <h:inputFile value="#{fileUpload.fichero}" />
+                    <h:inputFile value="#{fileUpload.fichero}"/>
                     <h:commandButton value="Actualizar imagen" action="#{clienteCtrl.subirImagen(fileUpload.fichero)}" />
                 </h:form>
-                Nick: #{clienteCtrl.cliente.nick}<br/>
-                Nombre: #{clienteCtrl.cliente.nombre}<br/>
-                DNI: #{clienteCtrl.cliente.dni}<br/>
-                Correo: #{clienteCtrl.cliente.correo}<br/>
-                Clave: #{clienteCtrl.cliente.clave}<br/>
-                <h:link value="Editar" outcome="index.xhtml?edicion=true"/>
- 
-
-            </div>
-        </div>
-
-        <h2>Perfil de #{clienteCtrl.cliente.nombre}</h2>
-        <div class="list-group">
-            <div class="list-group-item">
+                <br/>
                 <h:form id="formCliente" >
                     <h:outputText value="Nick: "/>
                     <h:outputText value="#{clienteCtrl.cliente.nick}" /><br/><h:inputHidden value="#{clienteCtrl.cliente.nick}"/>
@@ -62,15 +50,13 @@
                                          required="true" /><br/>
                     <h:message for="idCorreo" class="warn"/>
                     </p:inplace><br/>
-                    
-                    <h:outputText value="Clave "/>
-    
-                    <p:password value="#{clienteCtrl.cliente.clave}"/>
+                        
+                    <p:password placeholder="Cambiar clave" value="#{clienteCtrl.cliente.clave}"/>
 
 
                     <h:message for="idClave" class="warn"/><br/>
                     <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}"/>
-                    <h:button value="Cancelar" outcome="/index" />
+                    
                 </h:form>
             </div>
         </div>

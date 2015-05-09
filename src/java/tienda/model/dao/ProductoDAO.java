@@ -9,5 +9,6 @@ import tienda.model.Producto;
  */
 public interface ProductoDAO extends GenericDAO<Producto,Integer> {
     public List<Producto> buscaMayorPrecio();
+    public List<Producto> buscaFamilia(Integer f);
     
 }

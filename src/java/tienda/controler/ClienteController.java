@@ -210,15 +210,17 @@ public class ClienteController implements Serializable {
         editRow = "";
         lc = null;
     }
+    
     public void subirImagen(Part file) throws IOException {
-        FileUpload fichero = new FileUpload();
-        if (fichero.upload(file)) {
-            c.setImagen(fichero.getNombre());
-            clienteDAO.guarda(c);
-        } else {
-           // FacesMessage message = new FacesMessage("Tipo de imagen inválido");
-            //throw new ValidatorException(message);
-        }
+            FileUpload fichero = new FileUpload();
+            if (fichero.upload(file)) {
+                c.setImagen(fichero.getNombre());
+                clienteDAO.guarda(c);
+            } else {
+               // FacesMessage message = new FacesMessage("Tipo de imagen inválido");
+                //throw new ValidatorException(message);
+            }
+
     }
 
 //        public void validaImg(FacesContext context, UIComponent inputDni,Object value) {

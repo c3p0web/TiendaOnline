@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/plantilla/public/plantilla.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:define name="titulo">Tienda Online - Página principal</ui:define>
+    <ui:define name="menu">
+        <ui:include src="/WEB-INF/plantilla/topmenu.xhtml" />
+    </ui:define>
+    
+    <ui:define name="contenido">     
+        <h3>Familia de productos #{param['familia']}</h3>
+        <ui:repeat value="#{productoCtrl.productoFamilia(1)}" var="producto" >
+
+        <div class="col-sm-4 col-lg-4 col-md-4">    
+            <div class="thumbnail">
+                <h:link outcome="visualizaProducto" class="danger">
+                    <h:graphicImage library="images" name="#{producto.imagen}" alt="#{producto.nombre}" height="150" width="320"/>
+                    <f:param name="id" value="#{producto.id}" /></h:link>
+
+                <div class="caption">
+                    <h4 class="pull-right">#{producto.precio} €</h4>
+                    <h4><a href="#">#{producto.nombre}</a>
+                    </h4>
+                    <p>#{producto.descripcion}</p>
+                </div>
+                <div class="ratings">
+                    <p>
+                        <ui:repeat value="#{productoCtrl.getStars(producto.valoracion)}" var="positiva">
+                            <h:outputLabel class="glyphicon glyphicon-star" rendered="#{positiva}"/>
+                            <h:outputLabel class="glyphicon glyphicon-star-empty" rendered="#{!positiva}"/>
+                        </ui:repeat>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ui:repeat>
+    </ui:define>
+</ui:composition>

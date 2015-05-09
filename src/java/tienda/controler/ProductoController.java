@@ -132,21 +132,25 @@ public class ProductoController implements Serializable {
         if (lc == null) {
             lc = productoDAO.buscaMayorPrecio();
         }
-        System.out.println("TAMAÑO DE LA LISTA " + lc.size());
+       
+        return lc;
+    }
+    public List<Producto> productoFamilia(Integer f) {
+        if (lc == null) {
+            lc = productoDAO.buscaFamilia(f);
+        }
+       
         return lc;
     }
     
     public List<Boolean> getStars(Integer val) { 
-        List<Boolean> l = new ArrayList<>(5);
-        System.out.println("---valoracion: "+val);                     
+        List<Boolean> l = new ArrayList<>(5);                
         for (int i = 0; i < 5; i++) {
             if (val > i) {
                 l.add(Boolean.TRUE);
             }else
             l.add(Boolean.FALSE);
         }
-        System.out.println("======================");
-        System.out.println(l.toString());
         return l;
     }
     

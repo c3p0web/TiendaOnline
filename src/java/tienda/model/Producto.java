@@ -5,7 +5,6 @@
  */
 package tienda.model;
 
-import java.sql.Date;
 
 /**
  *
@@ -17,7 +16,6 @@ public class Producto {
     private String descripcion;
     private int valoracion;
     private float precio;
-    private Date fechaalta;
     private int familia;
     private String imagen;
 
@@ -27,15 +25,17 @@ public class Producto {
         nombre="Desconocido";
         descripcion="Sin descripcion";
         valoracion=0;
+        familia=1;
         precio=0;
         imagen="pdefecto.png";
     }
     
-    public Producto(int _id, String _nombre, String _descripcion, int _valoracion, float _precio, String _imagen) {
+    public Producto(int _id, String _nombre, String _descripcion, int _valoracion, int _familia, float _precio, String _imagen) {
         this.id=_id;
         this.nombre=_nombre;
         this.descripcion=_descripcion;
         this.valoracion=_valoracion;
+        this.familia=_familia;
         this.precio=_precio;
         this.imagen=_imagen;
     }
@@ -46,6 +46,7 @@ public class Producto {
         this.nombre=c.nombre;
         this.descripcion=c.descripcion;
         this.valoracion=c.valoracion;
+        this.familia=c.familia;
         this.precio=c.precio;
         this.imagen=c.imagen;
     }
@@ -115,6 +116,14 @@ public class Producto {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public int getFamilia() {
+        return familia;
+    }
+
+    public void setFamilia(int familia) {
+        this.familia = familia;
     }
     
     
