@@ -205,6 +205,7 @@ public class ClienteController implements Serializable {
      * @param cliente
      */
     public void guarda(Cliente cliente) {
+        System.err.println("MODIFICOOOOOOO");
         clienteDAO.guarda(cliente);
         editRow = "";
         lc = null;

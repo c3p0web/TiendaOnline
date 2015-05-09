@@ -19,7 +19,7 @@
         
         <ui:define name="contenido">
 
-        <h2>Edita Cliente</h2>
+        <h2>Edita Cliente #{clienteCtrl.cliente.nombre}</h2>
         <h:link value="Volver" outcome="listado_din" /><br/>
         <h:form id="formCliente">
             Nick: <h:outputText value="#{clienteCtrl.cliente.nick}" /><br/><h:inputHidden value="#{clienteCtrl.cliente.nick}"/>

@@ -168,6 +168,7 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
 
     @Override
     public boolean guarda(Cliente c) {
+        
         boolean result=false;
         try (Connection conn=ds.getConnection();
             PreparedStatement stmn=conn.prepareStatement(SQL_ACTUALIZA);
