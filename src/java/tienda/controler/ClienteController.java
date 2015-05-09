@@ -223,9 +223,8 @@ public class ClienteController implements Serializable {
         lc = null;
     }
     public void subirImagen(Part file) throws IOException {
-        String img = file.getName();
         FileUpload fichero = new FileUpload();
-        if (fichero.upload(file.getName())) {
+        if (fichero.upload(file)) {
             c.setImagen(fichero.getNombre());
             clienteDAO.guarda(c);
         } else {
