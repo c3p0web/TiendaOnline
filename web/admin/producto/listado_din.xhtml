@@ -41,11 +41,6 @@
                     <h:inputText value="#{producto.precio}" rendered="#{productoCtrl.isEditable(producto.id)}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Imagen</f:facet>
-                    <h:outputText value="#{producto.imagen}" rendered="#{!productoCtrl.isEditable(producto.id)}"/>
-                    <h:inputText value="#{producto.imagen}" rendered="#{productoCtrl.isEditable(producto.id)}"/>
-                </h:column>
-                <h:column>
                     <f:facet name="header">Opciones</f:facet>
                     <h:panelGroup rendered="#{!productoCtrl.isEditable(producto.id)}">
                         <h:link outcome="visualiza" class="danger"><i class="glyphicon glyphicon-eye-open"/>
