@@ -18,8 +18,7 @@
         </f:metadata>
 
         <div class="container" >
-            <h2>Mi Perfil</h2>
-            <h3> #{clienteCtrl.cliente.nombre}</h3>
+            <h2>Perfil de #{clienteCtrl.cliente.nombre}</h2>
             <h:graphicImage library="images" name="#{clienteCtrl.cliente.imagen}" height="150" /><br/>  
             <h:form  enctype="multipart/form-data">
                 <h:inputFile value="#{fileUpload.fichero}" />
@@ -49,7 +48,7 @@
          
                 </h:panelGroup>
                 <h:panelGroup rendered="#{clienteCtrl.isEditable(clienteCtrl.cliente.nick)}">
-                    <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}"/>
+                    <h:commandButton value="Guardar" action="#{clienteCtrl.guarda(clienteCtrl.cliente)}"/>
                     <h3>#{clienteCtrl.cliente.nombre}</h3>
                     <h:commandLink action="#{clienteCtrl.guarda(clienteCtrl.cliente)}"><i class="glyphicon glyphicon-ok"/></h:commandLink>&#160;&#160;&#160;
                     <h:commandLink action="#{clienteCtrl.setEditRow(null)}"><i class="glyphicon glyphicon-remove"/></h:commandLink>&#160;&#160;&#160;

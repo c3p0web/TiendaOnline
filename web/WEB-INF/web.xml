@@ -23,6 +23,14 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error404.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/loginerror.xhtml</location>
+    </error-page>
     <security-constraint>
         <display-name>AdminConstraint</display-name>
         <web-resource-collection>
