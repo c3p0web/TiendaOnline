@@ -19,7 +19,7 @@ public class Cliente {
     @Pattern(regexp = "^[a-zA-Z0-9+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "Email erróneo")
     private String correo;
 
-    @Pattern(regexp = "[a-zA-Z0-9\\\\s]{5,10}", message = "Contraseña inválida, almenos 5 carácteres")
+    @Pattern(regexp = "[a-zA-Z0-9\\\\s]{5,10}", message = "Contraseña inválida, almenos 3 carácteres")
     private String clave;
     
     @Pattern(regexp = "([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)", message = "Tipo de imágen inválido")

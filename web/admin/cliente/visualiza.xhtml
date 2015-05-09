@@ -21,9 +21,10 @@
             <h2>Visualiza Cliente</h2>
             <h:link value="Volver" outcome="listado_din" /><br/>
             
-            <h:form>
+            
                 <div class="list-group">
                     <div class="list-group-item">
+                        <h:graphicImage library="images" name="#{clienteCtrl.cliente.imagen}" height="150" /><br/> 
                         Nick: #{clienteCtrl.cliente.nick}<br/>
                         Nombre: #{clienteCtrl.cliente.nombre}<br/>
                         DNI: #{clienteCtrl.cliente.dni}<br/>
@@ -31,6 +32,7 @@
                         Clave: #{clienteCtrl.cliente.clave}<br/>
                     </div>
                 </div>
+            <h:form>
             <h:button value="Editar" outcome="edita">
                 <f:param name="nick" value="#{clienteCtrl.cliente.nick}"/>
             </h:button>

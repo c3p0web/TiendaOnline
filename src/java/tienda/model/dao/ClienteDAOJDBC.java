@@ -113,8 +113,8 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
             stmn.setString(6,c.getImagen());
             stmn.executeUpdate();
             //no introduce el usuario en roles    
-            stmn.setString(1,c.getNick());
-            stmn.setString(2,"cliente");
+            stmn2.setString(1,c.getNick());
+            stmn2.setString(2,"cliente");
             stmn2.executeUpdate();
 
             try (ResultSet rs=stmn.getGeneratedKeys()) {
@@ -147,8 +147,8 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
             stmn.setString(6,c.getImagen());
             stmn.executeUpdate();
             
-            stmn.setString(1,c.getNick());
-            stmn.setString(2,"admin");
+            stmn2.setString(1,c.getNick());
+            stmn2.setString(2,"admin");
             stmn2.executeUpdate();
 
             try (ResultSet rs=stmn.getGeneratedKeys()) {

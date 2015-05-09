@@ -1,46 +1,52 @@
-    <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                    xmlns:h="http://xmlns.jcp.org/jsf/html"
-                    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                    template="/WEB-INF/plantilla/admin/plantilla.xhtml"
-                    xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/plantilla/admin/plantilla.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-        <ui:define name="metadata">
-              <f:metadata>
-                <f:viewParam name="id" value="#{productoCtrl.producto.id}"/>
-                <f:viewAction action="#{productoCtrl.recupera()}" />
-            </f:metadata>               
-        </ui:define>
-            
-        <ui:define name="titulo">Tienda Online - Alta Producto</ui:define>
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{productoCtrl.producto.id}"/>
+            <f:viewAction action="#{productoCtrl.recupera()}" />
+        </f:metadata>               
+    </ui:define>
 
-        <ui:define name="menuizquierda">
-            <ui:include src="/WEB-INF/plantilla/admin/leftmenu.xhtml" />
-        </ui:define>
-        
-        <ui:define name="contenido">
+    <ui:define name="titulo">Tienda Online - Alta Producto</ui:define>
+
+    <ui:define name="menuizquierda">
+        <ui:include src="/WEB-INF/plantilla/admin/leftmenu.xhtml" />
+    </ui:define>
+
+    <ui:define name="contenido">
 
         <h2>Edita Producto</h2>
         <h:link value="Volver" outcome="listado_din" /><br/>
-        <h:form id="formProducto">
+        <h:form id="formProducto" role="form" enctype="multipart/form-data">
             <div class="list-group">
                 <div class="list-group-item">
-                    ID: <h:outputText value="#{productoCtrl.producto.id}" /><br/><h:inputHidden value="#{productoCtrl.producto.id}"/>
-                   Nombre: <h:inputText label="Nombre" id="idNombre" value="#{productoCtrl.producto.nombre}"
-                                        required="true" />
-                        <h:message for="idNombre" class="warn"/><br/>
-                        Descripcion:<br/> <h:inputTextarea id="idDescripcion" value="#{productoCtrl.producto.descripcion}"
-                                     required="true" />
-                        <h:message for="id" class="warn"/><br/>
-                    Valoracion: <h:inputText label="" id="idValoracion" value="#{productoCtrl.producto.valoracion}"
-                                     required="true" /><br/>
-                    Precio: <h:inputText label="" id="idPrecio" value="#{productoCtrl.producto.precio}"
-                                     required="true" /><br/>
-                    Imagen: <h:inputText label="" id="idImagen" value="#{productoCtrl.producto.imagen}"
-                                     required="true" /><br/>
+                    <h:graphicImage library="images" name="#{productoCtrl.producto.imagen}" height="150" />
+                    <h:inputFile value="#{fileUpload.fichero}" />
+                    <h:commandButton value="Upload" action="#{productoCtrl.subirImagen(fileUpload.fichero)}" />
+                    <div class="form-group">
+                        ID: <h:outputText value="#{productoCtrl.producto.id}" />
+                    </div>
+                    <div class="form-group">
+                        Nombre: <br/><h:inputText id="idNombre" value="#{productoCtrl.producto.nombre}" required="true" />
+                    </div>
+                    <div class="form-group">
+                        Descripcion:<br/><h:inputText id="idDescripcion" value="#{productoCtrl.producto.descripcion}" required="true" />                                       
+                    </div>
+                    <div class="form-group">
+                        Valoracion:<br/> <h:inputText  id="idValoracion" value="#{productoCtrl.producto.valoracion}"  required="true" />
+                    </div>
+                    <div class="form-group">
+                    Precio: <br/> <h:inputText id="idPrecio" value="#{productoCtrl.producto.precio}" required="true" />
+                    </div>
                 </div>
             </div>
+
             <h:commandButton value="Guardar" action="#{productoCtrl.guarda}"/>
             <h:button value="Cancelar" outcome="listado_din" />
         </h:form>
-        </ui:define>
-    </ui:composition>
+    </ui:define>
+</ui:composition>

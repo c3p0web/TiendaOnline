@@ -19,50 +19,19 @@
 
         <div class="container" >
             <h2>Mi Perfil</h2>
-            <h:form>
-                <h:commandButton  class="btn btn-default" action="#{clienteCtrl.logout()}" value="Cerrar sesión" />
-            </h:form> 
-            <h:graphicImage library="images" name="#{clienteCtrl.cliente.imagen}" height="150" /><br/>        
+            <h:graphicImage library="images" name="#{clienteCtrl.cliente.imagen}" height="150" /><br/>  
+            <h:form  enctype="multipart/form-data">
+                <h:inputFile value="#{fileUpload.fichero}" />
+                <h:commandButton value="Upload" action="#{clienteCtrl.subirImagen(fileUpload.fichero)}" />
+            </h:form>        
             Nombre: #{clienteCtrl.cliente.nombre}<br/>
             DNI: #{clienteCtrl.cliente.dni}<br/>      
             Correo: #{clienteCtrl.cliente.correo}<br/>
             Clave: #{clienteCtrl.cliente.clave}<br/> 
-
+            <h:button value="Editar" outcome="/admin/cliente/edita">
+                <f:param name="nick" value="#{clienteCtrl.cliente.nick}"/>
+            </h:button>
         </div>
-        <h:form  enctype="multipart/form-data">
-            <h:inputFile value="#{fileUpload.fichero}" /><br/> 
-            <h:commandButton value="Upload" action="#{clienteCtrl.subirImagen(fileUpload.fichero)}" />
-        </h:form>
-
-
-        <!--IMPORTANTE HAY QUE VALIDAR LOS CAMPOS!!!-->
-        <h:form role="form" style="width: 30%;alignment-adjust: central">
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <h:inputText  id="nombre" class="form-control" value="#{clienteCtrl.cliente.nombre}"/>
-                <h:message for="nombre" class="warn" /><br/>
-            </div>
-            <div class="form-group">
-                <label for="dni">DNI:</label>
-                <h:inputText  id="dni" class="form-control" value="#{clienteCtrl.cliente.dni}"/>
-                <h:message for="dni" class="warn" /><br/>
-            </div>
-            <div class="form-group">
-                <label for="pwd">Correo:</label>
-                <h:inputText  id="email" class="form-control" value="#{clienteCtrl.cliente.correo}"/>
-                <h:message for="email" class="warn" /><br/>
-            </div>
-            <div class="form-group">
-                <label for="pwd">Contraseña:</label>
-                <h:inputText  id="pwd" class="form-control" value="#{clienteCtrl.cliente.clave}"/>
-                <h:message for="pwd" class="warn" /><br/>
-            </div>
-            <h:commandButton value="Guardar" class="btn btn-default" action="#{clienteCtrl.guarda()}"/>
-        </h:form>  
-
-
-
-
 
 
     </ui:define>
