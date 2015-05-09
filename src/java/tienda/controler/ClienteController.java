@@ -103,21 +103,7 @@ public class ClienteController implements Serializable {
         }
     }
 
-    /**
-     *
-     * @param nombre
-     * @param clave
-     * @return
-     */
-    public String login(String nombre, String clave) {
-        Cliente clienteActual;
-        clienteActual = clienteDAO.logIn(nombre, clave);
-        if (clienteActual != null) {
-            c = clienteActual;
-            return "/index";
-        }
-        return "index";
-    }
+ 
     
     public boolean isAdmin(){
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -152,7 +138,7 @@ public class ClienteController implements Serializable {
         if (session != null) {
             session.invalidate(); //Cierre de sesion
         }
-        return "/index.xhtml";// indicas a donde quieres direccionar después de cerrar sesión 
+        return "/index?faces-redirect=true";// indicas a donde quieres direccionar después de cerrar sesión 
     }
 
     //alta de admins
@@ -208,6 +194,7 @@ public class ClienteController implements Serializable {
 
     /**
      * Enable row edit model
+     * @param row
      */
     public void setEditRow(String row) {
         this.editRow = row;
@@ -215,9 +202,9 @@ public class ClienteController implements Serializable {
 
     /**
      * Update current row from table to DAO
+     * @param cliente
      */
     public void guarda(Cliente cliente) {
-
         clienteDAO.guarda(cliente);
         editRow = "";
         lc = null;

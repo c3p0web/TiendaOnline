@@ -19,7 +19,7 @@ create table Clientes
 -- Insert sample records
 insert into Clientes (nick,dni,nombre,correo,clave,imagen) VALUES ('admin','11111111-A','Manuel García','asdf1@gmail.com','admin','defecto.png');
 insert into Clientes (nick,dni,nombre,correo,clave,imagen) VALUES ('marial','22222222-B','María López','asdf2@gmail.com','1234','defecto.png');
-insert into Clientes (nick,dni,nombre,correo,clave,imagen) VALUES ('samuel33','33333333-C','Samuel Aranda','asdf3@gmail.com','1234','defecto.png');
+insert into Clientes (nick,dni,nombre,correo,clave,imagen) VALUES ('user','33333333-C','Samuel Aranda','asdf3@gmail.com','user','defecto.png');
 insert into Clientes (nick,dni,nombre,correo,clave,imagen) VALUES ('sonia92','44444444-D','Sonia Pérez','asdf4@gmail.com','1234','defecto.png');
 
 
@@ -38,13 +38,13 @@ create table Productos
 
 -- Insert sample records
 INSERT INTO TIENDAONLINE.PRODUCTOS (NOMBRE, DESCRIPCION, VALORACION, PRECIO, FECHAALTA, FAMILIA, IMAGEN) 
-	VALUES ('producto 1', 'descripcion para el producto 1', 5, 100, '2015-05-01', 1, 'producto1');
+	VALUES ('producto 1', 'descripcion para el producto 1', 5, 100, '2015-05-01', 1, 'pdefecto.png');
 INSERT INTO TIENDAONLINE.PRODUCTOS (NOMBRE, DESCRIPCION, VALORACION, PRECIO, FECHAALTA, FAMILIA, IMAGEN) 
-	VALUES ('producto 2', 'descripcion para el producto 2', 8, 50, '2015-03-12', 1, 'producto2.');
+	VALUES ('producto 2', 'descripcion para el producto 2', 8, 50, '2015-03-12', 1, 'pdefecto.png');
 INSERT INTO TIENDAONLINE.PRODUCTOS (NOMBRE, DESCRIPCION, VALORACION, PRECIO, FECHAALTA, FAMILIA, IMAGEN) 
-	VALUES ('producto 3', 'descripcion para el producto 3', 4, 42.5, '2015-05-10', 1, 'producto3');
+	VALUES ('producto 3', 'descripcion para el producto 3', 4, 42.5, '2015-05-10', 1, 'pdefecto.png');
 INSERT INTO TIENDAONLINE.PRODUCTOS (NOMBRE, DESCRIPCION, VALORACION, PRECIO, FECHAALTA, FAMILIA, IMAGEN) 
-	VALUES ('producto 25', 'descripcion para el producto asdf', 7, 82, '2015-05-03', 1, 'producto4');
+	VALUES ('producto 25', 'descripcion para el producto asdf', 7, 82, '2015-05-03', 1, 'pdefecto.png');
 
 
 -- ####################         FAMILIAS       #################### 
@@ -74,3 +74,4 @@ create table Roles
 insert into Roles values ('admin','administrador');
 insert into Roles values ('marial','cliente');
 insert into Roles values ('sonia92','cliente');
+insert into Roles values ('user','cliente');

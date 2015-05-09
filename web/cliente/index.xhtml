@@ -19,18 +19,43 @@
 
         <div class="container" >
             <h2>Mi Perfil</h2>
+            <h3> #{clienteCtrl.cliente.nombre}</h3>
             <h:graphicImage library="images" name="#{clienteCtrl.cliente.imagen}" height="150" /><br/>  
             <h:form  enctype="multipart/form-data">
                 <h:inputFile value="#{fileUpload.fichero}" />
                 <h:commandButton value="Upload" action="#{clienteCtrl.subirImagen(fileUpload.fichero)}" />
-            </h:form>        
-            Nombre: #{clienteCtrl.cliente.nombre}<br/>
-            DNI: #{clienteCtrl.cliente.dni}<br/>      
-            Correo: #{clienteCtrl.cliente.correo}<br/>
-            Clave: #{clienteCtrl.cliente.clave}<br/> 
-            <h:button value="Editar" outcome="/admin/cliente/edita">
-                <f:param name="nick" value="#{clienteCtrl.cliente.nick}"/>
-            </h:button>
+
+            </h:form> 
+            <h:form>
+                <h:outputText value="Nombre: " />
+                <h:outputText value="#{clienteCtrl.cliente.nombre}" rendered="#{!clienteCtrl.isEditable(clienteCtrl.cliente.nick)}"/>
+                <h:inputText value="#{clienteCtrl.cliente.nombre}" rendered="#{clienteCtrl.isEditable(clienteCtrl.cliente.nick)}"/>
+                <br/>
+                <h:outputText value="Dni: " />
+                <h:outputText value="#{clienteCtrl.cliente.dni}" rendered="#{!clienteCtrl.isEditable(clienteCtrl.cliente.nick)}"/>
+                <h:inputText value="#{clienteCtrl.cliente.dni}" rendered="#{clienteCtrl.isEditable(clienteCtrl.cliente.nick)}"/>
+                <br/>
+                <h:outputText value="Correo: " />
+                <h:outputText value="#{clienteCtrl.cliente.correo}" rendered="#{!clienteCtrl.isEditable(clienteCtrl.cliente.nick)}"/>
+                <h:inputText value="#{clienteCtrl.cliente.correo}" rendered="#{clienteCtrl.isEditable(clienteCtrl.cliente.nick)}"/>
+                <br/>
+                <h:outputText value="Clave: " />
+                <h:outputText value="#{clienteCtrl.cliente.clave}" rendered="#{!clienteCtrl.isEditable(clienteCtrl.cliente.nick)}"/>
+                <h:inputText value="#{clienteCtrl.cliente.clave}" rendered="#{clienteCtrl.isEditable(clienteCtrl.cliente.nick)}"/>
+                <br/>
+                <f:facet name="header">Opciones</f:facet>
+                <h:panelGroup rendered="#{!clienteCtrl.isEditable(clienteCtrl.cliente.nick)}">     
+                    <h:commandLink action="#{clienteCtrl.setEditRow(clienteCtrl.cliente.nick)}">Editar <i class="glyphicon glyphicon-edit"/></h:commandLink>&#160;&#160;&#160;
+         
+                </h:panelGroup>
+                <h:panelGroup rendered="#{clienteCtrl.isEditable(clienteCtrl.cliente.nick)}">
+                    <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}"/>
+                    <h3>#{clienteCtrl.cliente.nombre}</h3>
+                    <h:commandLink action="#{clienteCtrl.guarda(clienteCtrl.cliente)}"><i class="glyphicon glyphicon-ok"/></h:commandLink>&#160;&#160;&#160;
+                    <h:commandLink action="#{clienteCtrl.setEditRow(null)}"><i class="glyphicon glyphicon-remove"/></h:commandLink>&#160;&#160;&#160;
+
+                </h:panelGroup>
+            </h:form>
         </div>
 
 

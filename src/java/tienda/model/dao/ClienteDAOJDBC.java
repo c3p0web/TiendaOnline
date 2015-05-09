@@ -201,25 +201,6 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
     
     
     
-    
-    @Override
-    public Cliente logIn(String nombre, String clave){
-        Cliente c = null;
-        try (Connection conn = ds.getConnection();
-                PreparedStatement stmn=conn.prepareStatement(SQL_LOGIN)){
-            stmn.setString(1, nombre);
-            stmn.setString(2,clave);
-            try( ResultSet rs=stmn.executeQuery()) {
-                rs.next();
-                c = clienteMapper(rs);                
-            }
-        }catch(SQLException ex) {
-            Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
-        }
-        return c;
-    }
-    
-    
 }
 // Closing recourses and catching exceptions correctly JDK<7!!!!
 //		Connection con = null;

@@ -28,7 +28,7 @@ public class Producto {
         descripcion="Sin descripcion";
         valoracion=0;
         precio=0;
-        imagen="";
+        imagen="pdefecto.png";
     }
     
     public Producto(int _id, String _nombre, String _descripcion, int _valoracion, float _precio, String _imagen) {
