@@ -72,3 +72,10 @@ footer {
 .input-text-small{
     width: 50px;
 }
+
+.precio{
+    font-size: 300%;
+}
+.visualiza-star{
+    font-size: 200%;
+}

@@ -119,7 +119,7 @@ public class ProductoDAOJDBC implements ProductoDAO, Serializable{
         List<Producto> l=new ArrayList<>();
         try (Connection conn=ds.getConnection();
             PreparedStatement stmn=conn.prepareStatement(SQL_FAMILIA)){
-            stmn.setInt(1,f);
+            stmn.setInt(1,(Integer)f);
                  
 
             try( ResultSet rs=stmn.executeQuery()) {

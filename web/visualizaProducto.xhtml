@@ -16,17 +16,43 @@
     <ui:define name="menuizquierda">
         <ui:include src="/WEB-INF/plantilla/admin/leftmenu.xhtml" />
     </ui:define>
-
+    <ui:define name="menu">
+        <ui:include src="/WEB-INF/plantilla/topmenu.xhtml" />
+    </ui:define>
     <ui:define name="contenido">
         <h2>#{productoCtrl.producto.nombre}</h2>
 
         <h:form role="form">
             <div class="list-group">
                 <div class="list-group-item">
-                    <h:graphicImage library="images" name="#{productoCtrl.producto.imagen}" height="150" /><br/> 
-                    Descripcion: <br/>#{productoCtrl.producto.descripcion}<br/>
-                    Valoracion: #{productoCtrl.producto.valoracion}<br/>
-                    Precio: #{productoCtrl.producto.precio} €<br/>
+                    <div class="row">
+                        <div class="col-md-5 img-responsive">
+                            
+                            <h:graphicImage library="images" name="#{productoCtrl.producto.imagen}" /><br/> 
+                        </div>
+                        <div class="col-md-7">
+                            
+                            Descripcion: <br/>#{productoCtrl.producto.descripcion}<br/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ratings text-center">
+                                        <ui:repeat value="#{productoCtrl.getStars(productoCtrl.producto.id)}" var="positiva">
+                                            <h:outputLabel class="glyphicon glyphicon-star visualiza-star" rendered="#{positiva}"/>
+                                            <h:outputLabel class="glyphicon glyphicon-star-empty" rendered="#{!positiva}"/>
+                                        </ui:repeat>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center">
+                                        <h:outputText value="Precio: "/>
+                                        <h:outputText class="precio" value="#{productoCtrl.producto.precio} €"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
             </div>         
 

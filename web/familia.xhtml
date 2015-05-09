@@ -4,6 +4,15 @@
                 template="/WEB-INF/plantilla/public/plantilla.xhtml"
                 xmlns:f="http://java.sun.com/jsf/core">
     
+    
+    
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="familia" value="#{productoCtrl.producto.familia}"/>
+        </f:metadata>               
+    </ui:define>
+    
+    
     <ui:define name="titulo">Tienda Online - Página principal</ui:define>
     <ui:define name="menu">
         <ui:include src="/WEB-INF/plantilla/topmenu.xhtml" />
@@ -11,7 +20,7 @@
     
     <ui:define name="contenido">     
         <h3>Familia de productos #{param['familia']}</h3>
-        <ui:repeat value="#{productoCtrl.productoFamilia(1)}" var="producto" >
+        <ui:repeat value="#{productoCtrl.productoFamilia(productoCtrl.producto.familia)}" var="producto" >
 
         <div class="col-sm-4 col-lg-4 col-md-4">    
             <div class="thumbnail">
