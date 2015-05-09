@@ -1,14 +1,14 @@
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="/WEB-INF/plantilla/public/plantilla.xhtml"
-                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
 
-    <ui:define name="titulo">Tienda Online - Página principal</ui:define>
+    <ui:define name="titulo">Tienda Online - Mi Perfil</ui:define>
     <ui:define name="menu">
         <ui:include src="/WEB-INF/plantilla/topmenu.xhtml" />
     </ui:define>
@@ -29,28 +29,51 @@
                 DNI: #{clienteCtrl.cliente.dni}<br/>
                 Correo: #{clienteCtrl.cliente.correo}<br/>
                 Clave: #{clienteCtrl.cliente.clave}<br/>
+                <h:link value="Editar" outcome="index.xhtml?edicion=true"/>
+ 
+
             </div>
         </div>
 
-        <h2>Edita Cliente #{clienteCtrl.cliente.nombre}</h2>
-        <h:link value="Volver" outcome="listado_din" /><br/>
-        <h:form id="formCliente" >
-            Nick: <h:outputText value="#{clienteCtrl.cliente.nick}" /><br/><h:inputHidden value="#{clienteCtrl.cliente.nick}"/>
-            Nombre: <h:inputText label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
-                                 required="true" />
-            <h:message for="idNombre" class="warn"/><br/>
-            DNI: <h:inputText label="" id="idDNI" value="#{clienteCtrl.cliente.dni}"
-                              required="true" /><br/>
-            <h:message for="idDNI" class="warn"/>
-            Correo: <h:inputText label="" id="idCorreo" value="#{clienteCtrl.cliente.correo}"
-                                 required="true" /><br/>
-            <h:message for="idCorreo" class="warn"/>
-            Clave: <h:inputText label="" id="idClave" value="#{clienteCtrl.cliente.clave}"
-                                required="true" /><br/>
-            <h:message for="idClave" class="warn"/>
-            <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}"/>
-            <h:button value="Cancelar" outcome="/index" />
-        </h:form>
+        <h2>Perfil de #{clienteCtrl.cliente.nombre}</h2>
+        <div class="list-group">
+            <div class="list-group-item">
+                <h:form id="formCliente" >
+                    <h:outputText value="Nick: "/>
+                    <h:outputText value="#{clienteCtrl.cliente.nick}" /><br/><h:inputHidden value="#{clienteCtrl.cliente.nick}"/>
+                    
+                    <h:outputText value="Nombre: "/>
+                    <p:inplace id="nombre" editor="true">
+                    <h:inputText label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
+                                         required="true" />
+                    </p:inplace>
+                    <h:message for="idNombre" class="warn"/><br/>
+
+                    <h:outputText value="DNI: "/>
+                    <p:inplace id="dni" editor="true">
+                    <h:inputText label="" id="idDNI" value="#{clienteCtrl.cliente.dni}"
+                                      required="true" />
+                    </p:inplace><br/>
+                    <h:message for="idDNI" class="warn"/>
+
+                    <h:outputText value="Correo: "/>
+                    <p:inplace id="correo" editor="true">
+                    <h:inputText label="" id="idCorreo" value="#{clienteCtrl.cliente.correo}"
+                                         required="true" /><br/>
+                    <h:message for="idCorreo" class="warn"/>
+                    </p:inplace><br/>
+                    
+                    <h:outputText value="Clave "/>
+    
+                    <p:password value="#{clienteCtrl.cliente.clave}"/>
+
+
+                    <h:message for="idClave" class="warn"/><br/>
+                    <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}"/>
+                    <h:button value="Cancelar" outcome="/index" />
+                </h:form>
+            </div>
+        </div>
 
 
     </ui:define>
