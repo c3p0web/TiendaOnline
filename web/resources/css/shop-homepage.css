@@ -79,3 +79,10 @@ footer {
 .visualiza-star{
     font-size: 200%;
 }
+.form-alta{
+    width: 30%;
+}
+.warn{
+    color: red;
+    font-family: Arial,Helvetica;
+}

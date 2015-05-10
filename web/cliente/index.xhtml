@@ -6,8 +6,6 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-
-
     <ui:define name="titulo">Tienda Online - Mi Perfil</ui:define>
     <ui:define name="menu">
         <ui:include src="/WEB-INF/plantilla/topmenu.xhtml" />
@@ -22,11 +20,8 @@
             <div class="list-group-item">
                 <h:form enctype="multipart/form-data">
                     <h:graphicImage library="images" name="#{clienteCtrl.cliente.imagen}" height="150" />
-                    <h:inputFile value="#{fileUpload.fichero}"/>
-                    <h:commandButton value="Actualizar imagen" action="#{clienteCtrl.subirImagen(fileUpload.fichero)}" />
-                </h:form>
-                <br/>
-                <h:form id="formCliente" >
+                    <h:inputFile value="#{fileUpload.fichero}" required="true" requiredMessage="Seleccione una foto"/>
+                    <br/>
                     <h:outputText value="Nick: "/>
                     <h:outputText value="#{clienteCtrl.cliente.nick}" /><br/><h:inputHidden value="#{clienteCtrl.cliente.nick}"/><br/>
                     
@@ -49,13 +44,14 @@
                     <h:inputText label="" id="idCorreo" value="#{clienteCtrl.cliente.correo}"
                                          required="true" />
                     <h:message for="idCorreo" class="warn"/>
-                    </p:inplace><br/><br/>
-                        
-                    <p:password placeholder="Cambiar clave" value="#{clienteCtrl.cliente.clave}"/>
-
+                    </p:inplace>
 
                     <h:message for="idClave" class="warn"/><br/><br/>
-                    <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}"/>
+
+                    
+                    <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}">
+                        <f:actionListener binding="#{clienteCtrl.subirImagen(fileUpload.fichero)}"/>
+                    </h:commandButton>
                     
                 </h:form>
             </div>

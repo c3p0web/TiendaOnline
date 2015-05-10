@@ -33,6 +33,7 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
     private static final String SQL_CREAROL="INSERT INTO Roles (usuario,rol) VALUES(?,?)";
     private static final String SQL_ACTUALIZA="UPDATE Clientes set NOMBRE=?, DNI=?,CORREO=?, CLAVE=?, IMAGEN=? WHERE nick=?";
     private static final String SQL_BORRA="DELETE FROM Clientes WHERE nick=?";
+    private static final String SQL_BORRAROL="DELETE FROM ROLES WHERE usuario=?";
     private static final String SQL_LOGIN = "SELECT * FROM Clientes WHERE (nombre=? AND clave=?)";
 
   @Resource(lookup = "jdbc/tiendaOnline")
@@ -104,7 +105,6 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
             PreparedStatement stmn=conn.prepareStatement(SQL_CREA);
             PreparedStatement stmn2=conn.prepareStatement(SQL_CREAROL);
         ){
-            System.out.println("-----------------"+c.getNick());
             stmn.setString(1, c.getNick());
             stmn.setString(2,c.getNombre());
             stmn.setString(3,c.getDni());
@@ -112,7 +112,7 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
             stmn.setString(5,c.getClave());
             stmn.setString(6,c.getImagen());
             stmn.executeUpdate();
-            //no introduce el usuario en roles    
+            //crea rol
             stmn2.setString(1,c.getNick());
             stmn2.setString(2,"cliente");
             stmn2.executeUpdate();
@@ -189,15 +189,20 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
     @Override    
     public boolean borra(String nick) {
         boolean result=false;
+        boolean result2=false;
         try (Connection conn=ds.getConnection();
             PreparedStatement stmn=conn.prepareStatement(SQL_BORRA);
+            PreparedStatement stmn2=conn.prepareStatement(SQL_BORRAROL);
         ){
             stmn.setString(1,nick);
             result=(stmn.executeUpdate()==1);
+            
+            stmn2.setString(1,nick);
+            result2=(stmn2.executeUpdate()==1);
         } catch (Exception ex) {
             Logger.getLogger(ClienteDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
-        }         
-        return result;
+        }       
+        return result&&result2;
     }
     
     

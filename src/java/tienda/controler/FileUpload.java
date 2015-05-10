@@ -71,48 +71,6 @@ public class FileUpload implements Serializable {
         }
     }
 
-    /**
-     * Sube un fichero al servidor
-     *
-     * @param n nombre del fichero
-     * @return devolvemos cadena vacia para no redirigir a otra pagina
-     * @throws IOException errir lectura/escritura
-     */
-    public String upload(String n) throws IOException {
-        String extension = "";
-
-        int i = getFilename(fichero).lastIndexOf('.');
-        if (i > 0) {
-            extension = getFilename(fichero).substring(i + 1);
-        }
-
-        final FacesContext facesContext = FacesContext.getCurrentInstance();
-        final ExternalContext externalContext = facesContext.getExternalContext();
-        //Stream de entrada
-        InputStream inputStream = fichero.getInputStream();
-        //Fichero de salida
-        FileOutputStream outputStream;
-        //construimos el fichero en la ruta del servidor /resources/images/
-        outputStream = new FileOutputStream(externalContext.getRealPath("/") + "/resources/images/" + n + "." + extension);
-
-        //Leemos el buffer de entrada y escribimos en nustro fichero.
-        byte[] buffer = new byte[4096];
-        int bytesRead = 0;
-        while (true) {
-            bytesRead = inputStream.read(buffer);
-            if (bytesRead > 0) {
-                outputStream.write(buffer, 0, bytesRead);
-            } else {
-                break;
-            }
-        }
-        outputStream.close();
-        inputStream.close();
-
-        setNombre(n);
-
-        return "";
-    }
 
     /**
      *
@@ -144,13 +102,5 @@ public class FileUpload implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-//    public void validaImg(FacesContext context, UIComponent inputDni, Object value) {
-//        String img = (String) value;
-//        if (!img.matches("\"/(\\.|\\/)(gif|jpe?g|png)$/\"")) {
-//            FacesMessage message = new FacesMessage("Tipo de imagen inválido");
-//            throw new ValidatorException(message);
-//        }
-//    }
 
 }

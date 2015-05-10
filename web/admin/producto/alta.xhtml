@@ -13,29 +13,61 @@
     <ui:define name="contenido">
         <h2>Alta Producto</h2>
         <h:link value="Volver" outcome="listado_din" /><br/>
-        <h:form >
+        
+        <h:form enctype="multipart/form-data">
             <div class="list-group">
                 <div class="list-group-item">
-                    Nombre: <h:inputText label="Nombre" id="idNombre"
+                    <div class="form-group">
+                        <h:graphicImage library="images" name="#{productoCtrl.producto.imagen}" height="150" />
+                        <h:inputFile value="#{fileUpload.fichero}" required="true"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label><br/>
+                        <h:inputText label="Nombre" id="idNombre"
                                     value="#{productoCtrl.producto.nombre}" required="true"/>
                         <!--f:validateLength minimum="4" maximum="25"/-->
 
                         <h:message for="idNombre" class="warn" /><br/>
-                    Descripción: <h:inputText label="Descripcion" id="idDescripcion" 
-                                 value="#{productoCtrl.producto.descripcion}" required="true"/>
-                        <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label><br/>
+                        <h:inputTextarea id="idDescripcion" value="#{productoCtrl.producto.descripcion}" cols="50" rows="5" required="true" >
+                                <f:validateLength maximum="400"/>
+                            </h:inputTextarea>   
 
-                        <h:message for="idDescripcion" class="warn"/><br/>
-                    Valoración: <h:inputText label="Valoracion" id="idValoracion" 
-                                    value="#{productoCtrl.producto.valoracion}" required="true"/><br/>
-                        <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
-                    Precio: <h:inputText label="Precio" id="idPrecio" 
-                                    value="#{productoCtrl.producto.precio}" required="true"/><br/>
-                    Imagen <h:inputText label="Imagen" id="idImagen" 
-                                    value="#{productoCtrl.producto.imagen}" required="true"/><br/>
+                            <h:message for="idDescripcion" class="warn"/><br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="valoracion">Valoración:</label><br/>                       
+                            <h:selectOneMenu value="#{productoCtrl.producto.valoracion}" required="true">
+                                <f:selectItem itemValue="0" itemLabel="0"/>
+                                <f:selectItem itemValue="1" itemLabel="1"/>
+                                <f:selectItem itemValue="2" itemLabel="2"/>
+                                <f:selectItem itemValue="3" itemLabel="3"/>
+                                <f:selectItem itemValue="4" itemLabel="4"/>
+                                <f:selectItem itemValue="5" itemLabel="5"/>
+                            </h:selectOneMenu><br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="familia">Familia:</label><br/>                 
+                            <h:selectOneMenu value="#{productoCtrl.producto.familia}" required="true">
+                                <f:selectItem itemValue="1" itemLabel="Familia 1"/>
+                                <f:selectItem itemValue="2" itemLabel="Familia 2"/>
+                                <f:selectItem itemValue="3" itemLabel="Familia 3"/>
+                            </h:selectOneMenu><br/>
+                        <label for="precio">Precio:</label><br/>
+                        <h:inputText label="Precio" id="idPrecio" 
+                                        value="#{productoCtrl.producto.precio}" required="true"/><br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="img">Imagen:</label><br/>
+                        <h:outputText id="idImagen" value="#{productoCtrl.producto.imagen}"/><br/>
+                    </div>
                 </div>
             </div>
-            <h:commandButton value="Guardar" action="#{productoCtrl.crea}"/>
+            <h:commandButton value="Guardar" action="#{productoCtrl.crea}">
+                <f:actionListener binding="#{productoCtrl.subirImagen(fileUpload.fichero)}"/>
+            </h:commandButton>
             <h:button value="Cancelar" outcome="listado_din" />
     </h:form>
     </ui:define>

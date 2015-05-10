@@ -13,29 +13,38 @@
     <ui:define name="contenido">
         <h2>Alta Usuario</h2>
         <h:link value="Volver" outcome="listado_din" /><br/>
-        <h:form >
+        <h:form>
             <div class="list-group">
                 <div class="list-group-item">
-                    Nombre: <h:inputText label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}" required="true"/>
-                        <!--f:validateLength minimum="4" maximum="25"/-->
-
-                        <h:message for="idNombre" class="warn" /><br/>
-                    DNI: <h:inputText label="DNI" id="idDNI" value="#{clienteCtrl.cliente.dni}" required="true"/>
-                        <h:message for="idDNI" class="warn"/><br/>
-                    
-                    Nick: <h:inputText label="Nick" id="idNick" value="#{clienteCtrl.cliente.nick}" required="true"/>
-
-                        <h:message for="idNick" class="warn" /><br/>
-                    Clave: <h:inputText label="Clave" id="idPass" value="#{clienteCtrl.cliente.clave}" required="true"/>
-
-                        <h:message for="idClave" class="warn" /><br/>
-                    Correo: <h:inputText label="Correo" id="idCorreo" value="#{clienteCtrl.cliente.correo}" required="true"/>
-
-                        <h:message for="idCorreo" class="warn" /><br/>
+                    <div class="form-group">
+                        <label for="nick">Nick:</label><br/>
+                        <h:inputText  id="nick"  value="#{clienteCtrl.cliente.nick}" required="true" />
+                        <h:message for="nick" class="warn" /><br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label><br/>
+                        <h:inputText  id="nombre" value="#{clienteCtrl.cliente.nombre}" required="true" />
+                        <h:message for="nombre" class="warn" /><br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">DNI:</label><br/>
+                        <h:inputText  id="dni" value="#{clienteCtrl.cliente.dni}" required="true" />
+                        <h:message for="dni" class="warn" /><br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo:</label><br/>
+                        <h:inputText  id="email" value="#{clienteCtrl.cliente.correo}" required="true" />
+                        <h:message for="email" class="warn" /><br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Contraseña:</label><br/>
+                        <h:inputSecret  id="pwd" value="#{clienteCtrl.cliente.clave}" required="true"/>
+                        <h:message for="pwd" class="warn" /><br/>
+                    </div>
+                    <h:commandButton value="Guardar" class="btn btn-default" action="#{clienteCtrl.alta}"/>
+                <h:button value="Cancelar" outcome="listado_din" />
                 </div>
             </div>
-            <h:commandButton value="Guardar" action="#{clienteCtrl.crea()}"/>
-            <h:button value="Cancelar" outcome="listado_din" />
         </h:form>
     </ui:define>
 </ui:composition>

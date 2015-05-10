@@ -39,7 +39,7 @@ public class ProductoDAOJDBC implements ProductoDAO, Serializable{
     private static String connPoolName="jdbc/tiendaOnline";               //Glassfish
     private static final String SQL_BUSCAID="SELECT * FROM Productos where id=?";
     private static final String SQL_BUSCATODOS="SELECT * FROM Productos";
-    private static final String SQL_CREA="INSERT INTO Productos (nombre,descripcion,valoracion,familia,precio,imagen) VALUES (?,?,?,?,?,?,?)";
+    private static final String SQL_CREA="INSERT INTO Productos (nombre,descripcion,valoracion,familia,precio,imagen) VALUES (?,?,?,?,?,?)";
     private static final String SQL_ACTUALIZA="UPDATE Productos set NOMBRE=?, DESCRIPCION=?, VALORACION=?, FAMILIA=?, PRECIO=?, IMAGEN=? WHERE id=?";
     private static final String SQL_BORRA="DELETE FROM Productos WHERE id=?";
     private static final String SQL_MAYORPRECIO="select * from PRODUCTOS ORDER BY precio DESC OFFSET 0 ROWS FETCH NEXT 6 ROWS ONLY";
